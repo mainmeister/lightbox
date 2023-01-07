@@ -27,15 +27,14 @@ def average_brightness(img):
 
 
 def averages(filename):
-    screenshot(filename)
-    img = cv2.imread(filename)
+    img = screenshot(filename)
     return (average_color(img), average_brightness(img))
 
 
 def screenshot(filename):
     myScreenshot = pyautogui.screenshot()
     myScreenshot.save(filename)
-
+    return cv2.imread(filename)
 
 if __name__ == "__main__":
     class myapp:
