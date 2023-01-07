@@ -1,7 +1,10 @@
+import time
 import cv2
 import numpy as np
 from numpy.linalg import norm
 import pyautogui
+import tkinter as tk
+
 
 def average_color(img):
     avg_color_per_row = np.average(img, axis=0)
@@ -18,14 +21,22 @@ def average_brightness(img):
         # Grayscale
         return np.average(img)
 
+def averages(filename):
+    screenshot(filename)
+    img = cv2.imread(filename)
+    return (average_color(img), average_brightness(img))
+def screenshot(filename):
+    myScreenshot = pyautogui.screenshot()
+    myScreenshot.save(filename)
+
 
 if __name__ == "__main__":
-    screenshot = r'screenshot.png'
+    screenshot_filename = r'screenshot.png'
+
+    root = tk.Tk()
+    root.mainloop()
 
     while True:
-        myScreenshot = pyautogui.screenshot()
-        myScreenshot.save(screenshot)
-
-        img = cv2.imread(screenshot)
-        print(f'Brightness is {average_brightness(img)}',flush=True)
-        print(f'Average color is {average_color(img)}',flush=True)
+        screenshot(screenshot_filename)
+        print(averages(screenshot_filename))
+        time.sleep(0.1)
