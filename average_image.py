@@ -1,13 +1,16 @@
-import time
+"""
+Functions to get the average color and brightness of a screenshot
+
+My thoughts are to use this to drive an analog string of RGB LEDs mounted behind the monitor
+
+I am included a simple tkinter GUI to test the functions if you run the module directly
+"""
+
+
 import cv2
 import numpy as np
-from numpy.linalg import norm
 import pyautogui
-import tkinter as tk
-
-
-# from tkinter import *
-# import tkinter
+from numpy.linalg import norm
 
 
 def average_color(img):
@@ -36,7 +39,14 @@ def screenshot(filename):
     myScreenshot.save(filename)
     return cv2.imread(filename)
 
+
 if __name__ == "__main__":
+    import tkinter as tk
+
+    """
+    This is a simple class to test the average_color and average_brightness functions.
+    Using a tkinter window to simulate a string of leds.
+    """
     class myapp:
 
         def __init__(self, master, filename):
